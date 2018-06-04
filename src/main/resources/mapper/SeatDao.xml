@@ -9,7 +9,7 @@
         <association property="seatType" column="seatTypeId" select="com.Infinity.dao.SeatTypeDao.selectById"/>
         <association property="studio" column="studioId" select="com.Infinity.dao.StudioDao.selectById"/>
     </resultMap>
-    
+
     <insert id="insertSeat">
         insert into t_seat values (null, #{studio.studioId}, #{row}, #{col}, #{seatType.id})
     </insert>
@@ -35,11 +35,11 @@
         where id = #{seatId}
     </update>
 
-    <select id="selectAllSeat" resultType="seat">
+    <select id="selectAllSeat" resultMap="seatResultMap">
         select * from t_seat
     </select>
 
-    <select id="selectById" resultMap="">
+    <select id="selectById" resultMap="seatResultMap">
         select * from t_seat where id = #{id}
     </select>
 
