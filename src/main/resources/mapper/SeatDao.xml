@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Infinity.dao.SeatDao">
+
+    <resultMap id="seatResultMap" type="seat">
+        <result property="seatId" column="id"/>
+        <result property="row" column="row"/>
+        <result property="col" column="col"/>
+        <association property="seatType" column="seatTypeId" select="com.Infinity.dao.SeatTypeDao.selectById"/>
+        <association property="studio" column="studioId" select="com.Infinity.dao.StudioDao.selectById"/>
+    </resultMap>
+    
+    <insert id="insertSeat">
+        insert into t_seat values (null, #{studio.studioId}, #{row}, #{col}, #{seatType.id})
+    </insert>
+
+    <delete id="deleteSeat">
+        delete from t_seat
+        where id = #{seatId}
+    </delete>
+
+    <delete id="deleteSeats" parameterType="integer">
+        delete from t_seat where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateSeat">
+        update t_seat
+        set studioId = #{studio.studioId}
+            , row = #{row}
+            , col = #{col}
+            , id = #{seatType.id}
+        where id = #{seatId}
+    </update>
+
+    <select id="selectAllSeat" resultType="seat">
+        select * from t_seat
+    </select>
+
+    <select id="selectById" resultMap="">
+        select * from t_seat where id = #{id}
+    </select>
+
+</mapper>
+
+
