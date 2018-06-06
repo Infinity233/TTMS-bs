@@ -2,6 +2,7 @@ package com.Infinity.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * t_film
@@ -45,14 +46,16 @@ public class Film implements Serializable {
      */
     private Integer clickHit;
 
-    private Integer employeeId;
-
     private Date publishDate;
 
     /**
      * 描述
      */
     private String resume;
+
+    private Employee director;              // 导演
+    private List<FilmType> filmTypes;       // 电影类型
+    private List<Employee> employees;       // 演员
 
     private static final long serialVersionUID = 1L;
 
@@ -120,14 +123,6 @@ public class Film implements Serializable {
         this.clickHit = clickHit;
     }
 
-    public Integer getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
-    }
-
     public Date getPublishDate() {
         return publishDate;
     }
@@ -144,25 +139,47 @@ public class Film implements Serializable {
         this.resume = resume;
     }
 
+
+    public Employee getDirector() {
+        return director;
+    }
+
+    public void setDirector(Employee director) {
+        this.director = director;
+    }
+
+    public List<FilmType> getFilmTypes() {
+        return filmTypes;
+    }
+
+    public void setFilmTypes(List<FilmType> filmTypes) {
+        this.filmTypes = filmTypes;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", cover=").append(cover);
-        sb.append(", duration=").append(duration);
-        sb.append(", box=").append(box);
-        sb.append(", score=").append(score);
-        sb.append(", isHot=").append(isHot);
-        sb.append(", clickHit=").append(clickHit);
-        sb.append(", employeeId=").append(employeeId);
-        sb.append(", publishDate=").append(publishDate);
-        sb.append(", resume=").append(resume);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "Film{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", cover='" + cover + '\'' +
+                ", duration=" + duration +
+                ", box=" + box +
+                ", score=" + score +
+                ", isHot=" + isHot +
+                ", clickHit=" + clickHit +
+                ", publishDate=" + publishDate +
+                ", resume='" + resume + '\'' +
+                ", director=" + director +
+                ", filmTypes=" + filmTypes +
+                ", employees=" + employees +
+                '}';
     }
 }

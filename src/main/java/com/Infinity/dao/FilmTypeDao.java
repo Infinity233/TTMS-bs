@@ -1,6 +1,7 @@
 package com.Infinity.dao;
 
 import com.Infinity.pojo.FilmType;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,5 +20,8 @@ public interface FilmTypeDao {
 
     int updateByPrimaryKey(FilmType record);
 
+    @Select("select * from t_filmtype")
     List<FilmType> selectAll();
+
+    List<FilmType> selectByFilmId(int filmId);
 }

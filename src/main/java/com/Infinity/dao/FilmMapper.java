@@ -1,7 +1,12 @@
 package com.Infinity.dao;
 
 import com.Infinity.pojo.Film;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface FilmMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,4 +21,6 @@ public interface FilmMapper {
     int updateByPrimaryKeyWithBLOBs(Film record);
 
     int updateByPrimaryKey(Film record);
+
+    List<Film> selectAll();
 }

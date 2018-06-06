@@ -1,183 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.Infinity.dao.FilmMapper">
-  <resultMap id="BaseResultMap" type="com.Infinity.pojo.Film">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="cover" jdbcType="VARCHAR" property="cover" />
-    <result column="duration" jdbcType="INTEGER" property="duration" />
-    <result column="box" jdbcType="INTEGER" property="box" />
-    <result column="score" jdbcType="DOUBLE" property="score" />
-    <result column="is_hot" jdbcType="INTEGER" property="isHot" />
-    <result column="click_hit" jdbcType="INTEGER" property="clickHit" />
-    <result column="employee_id" jdbcType="INTEGER" property="employeeId" />
-    <result column="publish_date" jdbcType="TIMESTAMP" property="publishDate" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Infinity.pojo.Film">
-    <result column="resume" jdbcType="LONGVARCHAR" property="resume" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, name, cover, duration, box, score, is_hot, click_hit, employee_id, publish_date
-  </sql>
-  <sql id="Blob_Column_List">
-    resume
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from t_film
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_film
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.Infinity.pojo.Film">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into t_film (name, cover, duration, 
-      box, score, is_hot, click_hit, 
-      employee_id, publish_date, resume
-      )
-    values (#{name,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, #{duration,jdbcType=INTEGER}, 
-      #{box,jdbcType=INTEGER}, #{score,jdbcType=DOUBLE}, #{isHot,jdbcType=INTEGER}, #{clickHit,jdbcType=INTEGER}, 
-      #{employeeId,jdbcType=INTEGER}, #{publishDate,jdbcType=TIMESTAMP}, #{resume,jdbcType=LONGVARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.Infinity.pojo.Film">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into t_film
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="name != null">
-        name,
-      </if>
-      <if test="cover != null">
-        cover,
-      </if>
-      <if test="duration != null">
-        duration,
-      </if>
-      <if test="box != null">
-        box,
-      </if>
-      <if test="score != null">
-        score,
-      </if>
-      <if test="isHot != null">
-        is_hot,
-      </if>
-      <if test="clickHit != null">
-        click_hit,
-      </if>
-      <if test="employeeId != null">
-        employee_id,
-      </if>
-      <if test="publishDate != null">
-        publish_date,
-      </if>
-      <if test="resume != null">
-        resume,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="cover != null">
-        #{cover,jdbcType=VARCHAR},
-      </if>
-      <if test="duration != null">
-        #{duration,jdbcType=INTEGER},
-      </if>
-      <if test="box != null">
-        #{box,jdbcType=INTEGER},
-      </if>
-      <if test="score != null">
-        #{score,jdbcType=DOUBLE},
-      </if>
-      <if test="isHot != null">
-        #{isHot,jdbcType=INTEGER},
-      </if>
-      <if test="clickHit != null">
-        #{clickHit,jdbcType=INTEGER},
-      </if>
-      <if test="employeeId != null">
-        #{employeeId,jdbcType=INTEGER},
-      </if>
-      <if test="publishDate != null">
-        #{publishDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="resume != null">
-        #{resume,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.Infinity.pojo.Film">
-    update t_film
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="cover != null">
-        cover = #{cover,jdbcType=VARCHAR},
-      </if>
-      <if test="duration != null">
-        duration = #{duration,jdbcType=INTEGER},
-      </if>
-      <if test="box != null">
-        box = #{box,jdbcType=INTEGER},
-      </if>
-      <if test="score != null">
-        score = #{score,jdbcType=DOUBLE},
-      </if>
-      <if test="isHot != null">
-        is_hot = #{isHot,jdbcType=INTEGER},
-      </if>
-      <if test="clickHit != null">
-        click_hit = #{clickHit,jdbcType=INTEGER},
-      </if>
-      <if test="employeeId != null">
-        employee_id = #{employeeId,jdbcType=INTEGER},
-      </if>
-      <if test="publishDate != null">
-        publish_date = #{publishDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="resume != null">
-        resume = #{resume,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Infinity.pojo.Film">
-    update t_film
-    set name = #{name,jdbcType=VARCHAR},
-      cover = #{cover,jdbcType=VARCHAR},
-      duration = #{duration,jdbcType=INTEGER},
-      box = #{box,jdbcType=INTEGER},
-      score = #{score,jdbcType=DOUBLE},
-      is_hot = #{isHot,jdbcType=INTEGER},
-      click_hit = #{clickHit,jdbcType=INTEGER},
-      employee_id = #{employeeId,jdbcType=INTEGER},
-      publish_date = #{publishDate,jdbcType=TIMESTAMP},
-      resume = #{resume,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.Infinity.pojo.Film">
-    update t_film
-    set name = #{name,jdbcType=VARCHAR},
-      cover = #{cover,jdbcType=VARCHAR},
-      duration = #{duration,jdbcType=INTEGER},
-      box = #{box,jdbcType=INTEGER},
-      score = #{score,jdbcType=DOUBLE},
-      is_hot = #{isHot,jdbcType=INTEGER},
-      click_hit = #{clickHit,jdbcType=INTEGER},
-      employee_id = #{employeeId,jdbcType=INTEGER},
-      publish_date = #{publishDate,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+    <resultMap id="BaseResultMap" type="com.Infinity.pojo.Film">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="cover" jdbcType="VARCHAR" property="cover"/>
+        <result column="duration" jdbcType="INTEGER" property="duration"/>
+        <result column="box" jdbcType="INTEGER" property="box"/>
+        <result column="score" jdbcType="DOUBLE" property="score"/>
+        <result column="is_hot" jdbcType="INTEGER" property="isHot"/>
+        <result column="click_hit" jdbcType="INTEGER" property="clickHit"/>
+        <!--<result column="employee_id" jdbcType="INTEGER" property="employeeId" />-->
+        <result column="publish_date" jdbcType="TIMESTAMP" property="publishDate"/>
+
+        <association property="director" column="employee_id"
+                     select="com.Infinity.dao.EmployeeMapper.selectByPrimaryKey"/>
+        <collection property="filmTypes" column="id" select="com.Infinity.dao.FilmTypeDao.selectByFilmId"/>
+        <collection property="employees" column="id" select="com.Infinity.dao.EmployeeMapper.selectByFilmId"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Infinity.pojo.Film">
+        <result column="resume" jdbcType="LONGVARCHAR" property="resume"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name, cover, duration, box, score, is_hot, click_hit, employee_id, publish_date
+    </sql>
+    <sql id="Blob_Column_List">
+        resume
+    </sql>
+
+    <select id="selectAll" resultMap="ResultMapWithBLOBs">
+        select *
+        from t_film
+    </select>
+
+    <!--===================================================================-->
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from t_film
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_film
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.Infinity.pojo.Film">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_film (name, cover, duration,
+        box, score, is_hot, click_hit,
+        employee_id, publish_date, resume
+        )
+        values (#{name,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, #{duration,jdbcType=INTEGER},
+        #{box,jdbcType=INTEGER}, #{score,jdbcType=DOUBLE}, #{isHot,jdbcType=INTEGER}, #{clickHit,jdbcType=INTEGER},
+        #{employeeId,jdbcType=INTEGER}, #{publishDate,jdbcType=TIMESTAMP}, #{resume,jdbcType=LONGVARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.Infinity.pojo.Film">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_film
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="cover != null">
+                cover,
+            </if>
+            <if test="duration != null">
+                duration,
+            </if>
+            <if test="box != null">
+                box,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+            <if test="isHot != null">
+                is_hot,
+            </if>
+            <if test="clickHit != null">
+                click_hit,
+            </if>
+            <if test="employeeId != null">
+                employee_id,
+            </if>
+            <if test="publishDate != null">
+                publish_date,
+            </if>
+            <if test="resume != null">
+                resume,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="cover != null">
+                #{cover,jdbcType=VARCHAR},
+            </if>
+            <if test="duration != null">
+                #{duration,jdbcType=INTEGER},
+            </if>
+            <if test="box != null">
+                #{box,jdbcType=INTEGER},
+            </if>
+            <if test="score != null">
+                #{score,jdbcType=DOUBLE},
+            </if>
+            <if test="isHot != null">
+                #{isHot,jdbcType=INTEGER},
+            </if>
+            <if test="clickHit != null">
+                #{clickHit,jdbcType=INTEGER},
+            </if>
+            <if test="employeeId != null">
+                #{employeeId,jdbcType=INTEGER},
+            </if>
+            <if test="publishDate != null">
+                #{publishDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="resume != null">
+                #{resume,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.Infinity.pojo.Film">
+        update t_film
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="cover != null">
+                cover = #{cover,jdbcType=VARCHAR},
+            </if>
+            <if test="duration != null">
+                duration = #{duration,jdbcType=INTEGER},
+            </if>
+            <if test="box != null">
+                box = #{box,jdbcType=INTEGER},
+            </if>
+            <if test="score != null">
+                score = #{score,jdbcType=DOUBLE},
+            </if>
+            <if test="isHot != null">
+                is_hot = #{isHot,jdbcType=INTEGER},
+            </if>
+            <if test="clickHit != null">
+                click_hit = #{clickHit,jdbcType=INTEGER},
+            </if>
+            <if test="employeeId != null">
+                employee_id = #{employeeId,jdbcType=INTEGER},
+            </if>
+            <if test="publishDate != null">
+                publish_date = #{publishDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="resume != null">
+                resume = #{resume,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Infinity.pojo.Film">
+        update t_film
+        set name         = #{name,jdbcType=VARCHAR},
+            cover        = #{cover,jdbcType=VARCHAR},
+            duration     = #{duration,jdbcType=INTEGER},
+            box          = #{box,jdbcType=INTEGER},
+            score        = #{score,jdbcType=DOUBLE},
+            is_hot       = #{isHot,jdbcType=INTEGER},
+            click_hit    = #{clickHit,jdbcType=INTEGER},
+            employee_id  = #{employeeId,jdbcType=INTEGER},
+            publish_date = #{publishDate,jdbcType=TIMESTAMP},
+            resume       = #{resume,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.Infinity.pojo.Film">
+        update t_film
+        set name         = #{name,jdbcType=VARCHAR},
+            cover        = #{cover,jdbcType=VARCHAR},
+            duration     = #{duration,jdbcType=INTEGER},
+            box          = #{box,jdbcType=INTEGER},
+            score        = #{score,jdbcType=DOUBLE},
+            is_hot       = #{isHot,jdbcType=INTEGER},
+            click_hit    = #{clickHit,jdbcType=INTEGER},
+            employee_id  = #{employeeId,jdbcType=INTEGER},
+            publish_date = #{publishDate,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>
