@@ -19,6 +19,22 @@ public class Seat {
         this.studio = studio;
     }
 
+    public int getStudioId() {
+        return studio.getId();
+    }
+
+    public void setStudioId(Integer id) {
+        studio.setId(id);
+    }
+
+    public int getSeatTypeId() {
+        return seatType.getId();
+    }
+
+    public void setId(Integer id) {
+        seatType.setId(id);
+    }
+
     @Override
     public String toString() {
         return "Seat{" +

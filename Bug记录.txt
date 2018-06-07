@@ -1,0 +1,6 @@
+2018年6月7日22:55:57：
+
+Mapped Statements collection does not contain value for {全限定性方法名}
+
+原因：
+在seatDao里resultMap一对一级联 select属性里的方法名填错了（在另一边更改了）

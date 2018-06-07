@@ -3,9 +3,11 @@ package com.Infinity.dao;
 import com.Infinity.pojo.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 

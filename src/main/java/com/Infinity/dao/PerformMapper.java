@@ -1,7 +1,9 @@
 package com.Infinity.dao;
 
 import com.Infinity.pojo.Perform;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PerformMapper {
     int deleteByPrimaryKey(Integer id);
 

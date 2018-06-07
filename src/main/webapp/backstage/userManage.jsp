@@ -39,7 +39,7 @@
 </blockquote>
 
 <table class="layui-table"
-       lay-data="{cellMinWidth: 80 , height: 'full-60', url:'/user/selectAll.do', page:true, id:'idTest'}"
+       lay-data="{cellMinWidth: 80 , height: 'full-87', url:'/user/selectAll.do', page:true, id:'idTest'}"
        lay-filter="demo">
     <thead>
     <tr>
@@ -111,6 +111,11 @@
             , layer = layui.layer;
 
         $("#reset").click(function () {
+
+            if ($("#username").attr("readOnly") == null) {
+                $("#username").val("");
+            }
+
             $("#password").val("");
             $("#nickname").val("");
             $("#tel").val("");

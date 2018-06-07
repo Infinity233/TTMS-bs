@@ -10,10 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -21,7 +22,6 @@ public class UserController {
     UserService userService;
 
     @RequestMapping("/selectAll")
-    @ResponseBody
     public String selectAll() {
 
         Gson gson = new Gson();
@@ -35,7 +35,6 @@ public class UserController {
 
         finalJson.addProperty("count", users.size());
 
-        JsonObject t = new JsonObject();
         for (User user : users) {
             jsonArray.add(gson.toJsonTree(user));
         }
@@ -45,7 +44,6 @@ public class UserController {
     }
 
     @RequestMapping("/selectByUsername")
-    @ResponseBody
     public String selectByUsername(String username) {
 
         if (username == null || username.equals("")) {
@@ -56,7 +54,6 @@ public class UserController {
         JsonObject finalJson = new JsonObject();
         JsonArray jsonArray = new JsonArray();
 
-        System.out.println(username);
         User user = new User();
         user.setUsername(username);
 
@@ -67,7 +64,6 @@ public class UserController {
 
         finalJson.addProperty("count", users.size());
 
-        JsonObject t = new JsonObject();
         for (User tUser : users) {
             jsonArray.add(gson.toJsonTree(tUser));
         }
@@ -77,10 +73,8 @@ public class UserController {
     }
 
     @RequestMapping("/delete")
-    @ResponseBody
     public String delUsers(String delIds) {
 
-        String errorMsg = "";
         JsonObject finalJson = new JsonObject();
 
         String[] delId = delIds.split(",");
@@ -97,7 +91,6 @@ public class UserController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    @ResponseBody
     public String addUser(User user) {
 
         JsonObject finalJson = new JsonObject();

@@ -10,6 +10,21 @@
   <sql id="Base_Column_List">
     id, username, password, realname
   </sql>
+
+  <select id="selectByUsernameMohu" parameterType="string" resultMap="BaseResultMap">
+    select * from t_manager
+    <if test="username != null">
+      where username like concat('%', #{username,jdbcType=VARCHAR}, '%')
+    </if>
+  </select>
+
+  <delete id="deleteByIds" parameterType="string">
+    delete from t_manager where id in
+    <foreach collection="array" item="delIds" open="(" separator="," close=")">
+      #{delIds}
+    </foreach>
+  </delete>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
