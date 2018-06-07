@@ -18,6 +18,12 @@ public class UserService {
         return userMapper.selectAll();
     }
 
+    public List<User> serachUser(String username) {
+
+        List<User> list = userMapper.selectByUsernameMohu(username);
+        return list;
+    }
+
     public int insert(User user) {
 
         return userMapper.insert(user);
@@ -28,7 +34,7 @@ public class UserService {
         return userMapper.updateByPrimaryKeySelective(user);
     }
 
-    public int delete(List<String> list) {
+    public int delete(String[] list) {
 
         return userMapper.deleteByIds(list);
     }

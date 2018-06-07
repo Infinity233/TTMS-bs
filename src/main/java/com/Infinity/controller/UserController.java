@@ -44,12 +44,54 @@ public class UserController {
         return finalJson.toString();
     }
 
+    @RequestMapping("/selectByUsername")
+    @ResponseBody
+    public String selectByUsername(String username) {
+
+        if (username == null || username.equals("")) {
+            return selectAll();
+        }
+
+        Gson gson = new Gson();
+        JsonObject finalJson = new JsonObject();
+        JsonArray jsonArray = new JsonArray();
+
+        System.out.println(username);
+        User user = new User();
+        user.setUsername(username);
+
+        finalJson.addProperty("code", 0);
+        finalJson.addProperty("msg", "");
+
+        List<User> users = userService.serachUser(username);
+
+        finalJson.addProperty("count", users.size());
+
+        JsonObject t = new JsonObject();
+        for (User tUser : users) {
+            jsonArray.add(gson.toJsonTree(tUser));
+        }
+
+        finalJson.add("data", jsonArray);
+        return finalJson.toString();
+    }
+
     @RequestMapping("/delete")
     @ResponseBody
     public String delUsers(String delIds) {
 
+        String errorMsg = "";
         JsonObject finalJson = new JsonObject();
 
+        String[] delId = delIds.split(",");
+
+        int delNum = userService.delete(delId);
+
+        if (delNum == 0) {
+            finalJson.addProperty("errorMsg", "删除失败");
+        }
+
+        finalJson.addProperty("success", 1);
 
         return finalJson.toString();
     }
@@ -77,16 +119,16 @@ public class UserController {
             resultNum = userService.update(user);
         }
 
-        if (resultNum == 0) {
+        if (errorMsg == null && resultNum == 0) {
             errorMsg = "修改失败";
         }
 
-        if(errorMsg!=null) {
-            finalJson.addProperty("errorMsg",errorMsg);
+        if (errorMsg != null) {
+            finalJson.addProperty("errorMsg", errorMsg);
         } else {
-            finalJson.addProperty("success",1);
+            finalJson.addProperty("success", 1);
         }
-
+        System.out.println(finalJson.toString());
         return finalJson.toString();
     }
 }

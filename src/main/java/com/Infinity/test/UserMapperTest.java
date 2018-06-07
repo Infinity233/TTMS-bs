@@ -27,8 +27,6 @@ public class UserMapperTest {
 
         List<String> list = new ArrayList<>();
         list.add("4");
-
-        System.out.println(userService.delete(list));
     }
 
 }

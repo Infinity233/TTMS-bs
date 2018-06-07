@@ -25,8 +25,11 @@ public interface UserMapper {
     @Select("select * from t_user")
     List<User> selectAll();
 
+
+    List<User> selectByUsernameMohu(@Param("username") String username);
+
     @Select("select count(*) from t_user where username=#{username}")
     int selectByUsername(@Param("username") String username);
 
-    int deleteByIds(List<String> delIds);
+    int deleteByIds(String[] delIds);
 }
