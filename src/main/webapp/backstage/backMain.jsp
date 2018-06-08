@@ -65,6 +65,14 @@
                             </a>
                         </dd>
                     </dl>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="javascript:;" data-url="managerManage.jsp">
+                                <i class="iconfont icon-geren1" data-icon='icon-geren2'></i>
+                                <span>管理员管理</span>
+                            </a>
+                        </dd>
+                    </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">
@@ -95,9 +103,17 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" data-url="newHallManage.jsp">
+                            <a href="javascript:;" data-url="studioManage.jsp">
                                 <i class="iconfont icon-geren1" data-icon='icon-geren1'></i>
                                 <span>演出厅信息管理</span>
+                            </a>
+                        </dd>
+                    </dl>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="javascript:;" data-url="seatManage.jsp">
+                                <i class="iconfont icon-geren1" data-icon='icon-geren2'></i>
+                                <span>座位管理</span>
                             </a>
                         </dd>
 

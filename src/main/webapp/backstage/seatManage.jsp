@@ -45,10 +45,10 @@
     <tr>
         <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
         <th lay-data="{field:'seatId', sort: true, fixed: true}">ID</th>
-        <th lay-data="{field:'row'}">用户名</th>
-        <th lay-data="{field:'col'}">密码</th>
-        <th lay-data="{field:'seatType', templet: '<div>{{d.seatType.name}}</div>'}">昵称</th>
-        <th lay-data="{field:'studio', templet: '<div>{{d.studio.name}}</div>'}">电话</th>
+        <th lay-data="{field:'studio', templet: '<div>{{d.studio.name}}</div>'}">演出厅名</th>
+        <th lay-data="{field:'row'}">行号</th>
+        <th lay-data="{field:'col'}">宽号</th>
+        <th lay-data="{field:'seatType', templet: '<div>{{d.seatType.name}}</div>'}">座位状态</th>
         <th lay-data="{fixed: 'right', align:'center', toolbar: '#barDemo'}"></th>
     </tr>
     </thead>

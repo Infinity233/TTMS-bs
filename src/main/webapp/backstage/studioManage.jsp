@@ -203,6 +203,22 @@
                 $("#name").val(data.name);
                 $("#length").val(data.length);
                 $("#width").val(data.width);
+            } else if (obj.event === 'seat_detail') {
+
+                //查看座位图
+                layer.open({
+                    type: 2,
+                    shade: false,
+                    area: ['790px', '580px'],
+                    maxmin: true,
+                    content: '/backstage/seat.html?studioId='+data.id,
+                    zIndex: layer.zIndex, //重点1
+                    success: function(layero){
+                        layer.setTop(layero); //重点2
+                    }
+                });
+
+
             }
         });
 

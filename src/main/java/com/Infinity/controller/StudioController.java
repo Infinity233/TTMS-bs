@@ -1,5 +1,6 @@
 package com.Infinity.controller;
 
+import com.Infinity.pojo.Seat;
 import com.Infinity.pojo.Studio;
 import com.Infinity.service.SeatService;
 import com.Infinity.service.StudioService;
@@ -45,34 +46,19 @@ public class StudioController {
         return finalJson.toString();
     }
 
-//    @RequestMapping("/selectByStudioName")
-//    public String selectByStudioname(String studioname) {
-//
-//        if (studioname == null || studioname.equals("")) {
-//            return selectAll();
-//        }
-//
-//        Gson gson = new Gson();
-//        JsonObject finalJson = new JsonObject();
-//        JsonArray jsonArray = new JsonArray();
-//
-//        Studio studio = new Studio();
-//        studio.setStudioname(studioname);
-//
-//        finalJson.addProperty("code", 0);
-//        finalJson.addProperty("msg", "");
-//
-//        List<Studio> studios = studioService.serachStudio(studioname);
-//
-//        finalJson.addProperty("count", studios.size());
-//
-//        for (Studio tStudio : studios) {
-//            jsonArray.add(gson.toJsonTree(tStudio));
-//        }
-//
-//        finalJson.add("data", jsonArray);
-//        return finalJson.toString();
-//    }
+    @RequestMapping("checkSeat")
+    public String selectSeat(Integer studioId) {
+
+        Gson gson = new Gson();
+        JsonObject finalJson = new JsonObject();
+        JsonArray jsonArray = new JsonArray();
+
+        StringBuilder[] seatMap = seatService.selectByStudioId(studioId);
+
+        finalJson.add("seatMap", gson.toJsonTree(seatMap));
+
+        return finalJson.toString();
+    }
 
     @RequestMapping("delete")
     public String delStudios(String delIds) {
@@ -82,6 +68,7 @@ public class StudioController {
         String[] delId = delIds.split(",");
 
         int delNum = studioService.delete(delId);
+        int seatNum = seatService.deleteByStudioId(delId);
 
         if (delNum == 0) {
             finalJson.addProperty("errorMsg", "删除失败");

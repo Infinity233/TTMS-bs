@@ -2,6 +2,7 @@ package com.Infinity.controller;
 
 import com.Infinity.pojo.Seat;
 import com.Infinity.service.SeatService;
+import com.Infinity.util.StringUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -35,5 +36,20 @@ public class SeatController {
         finalJson.add("data", gson.toJsonTree(seats));
 
         return finalJson.toString();
+    }
+
+    @RequestMapping("setSeats")
+    public String setSeats(String toUn, String toAv, Integer studioId) {
+
+        if (StringUtil.isNotEmpty(toUn)) {
+            String[] setUn = toUn.split(",");
+            System.out.println(seatService.setUn(setUn, studioId));
+        }
+        if (StringUtil.isNotEmpty(toAv)) {
+            String[] setAv = toAv.split(",");
+            System.out.println(seatService.setAv(setAv, studioId));
+        }
+
+        return null;
     }
 }

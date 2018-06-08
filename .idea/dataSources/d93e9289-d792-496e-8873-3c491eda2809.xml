@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="ttms@localhost">
+<dataSource name="shiyan">
   <database-model serializer="dbm" rdbms="MYSQL" format-version="4.7">
     <root id="1">
       <DefaultCasing>lower/lower</DefaultCasing>
@@ -35,6 +35,7 @@
       <Collation>utf8_general_ci</Collation>
     </schema>
     <schema id="12" parent="1" name="shiyan">
+      <Current>1</Current>
       <Visible>1</Visible>
       <Collation>utf8_general_ci</Collation>
     </schema>
@@ -45,8 +46,6 @@
       <Collation>utf8_general_ci</Collation>
     </schema>
     <schema id="15" parent="1" name="ttms">
-      <Current>1</Current>
-      <Visible>1</Visible>
       <Collation>utf8_general_ci</Collation>
     </schema>
     <collation id="16" parent="1" name="armscii8_bin">
@@ -837,389 +836,70 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="213" parent="15" name="t_employee">
+    <table id="213" parent="12" name="stu_num">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="214" parent="15" name="t_film">
+    <table id="214" parent="12" name="student">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="215" parent="15" name="t_film_employee">
-      <Engine>InnoDB</Engine>
-    </table>
-    <table id="216" parent="15" name="t_film_filmtype">
-      <Engine>InnoDB</Engine>
-    </table>
-    <table id="217" parent="15" name="t_filmtype">
-      <Engine>InnoDB</Engine>
-    </table>
-    <table id="218" parent="15" name="t_manager">
-      <Engine>InnoDB</Engine>
-    </table>
-    <table id="219" parent="15" name="t_perform">
-      <Engine>InnoDB</Engine>
-    </table>
-    <table id="220" parent="15" name="t_seat">
-      <Engine>InnoDB</Engine>
-    </table>
-    <table id="221" parent="15" name="t_seattype">
-      <Engine>InnoDB</Engine>
-    </table>
-    <table id="222" parent="15" name="t_studio">
-      <Engine>InnoDB</Engine>
-    </table>
-    <table id="223" parent="15" name="t_user">
-      <Engine>InnoDB</Engine>
-    </table>
-    <column id="224" parent="213" name="id">
+    <column id="215" parent="213" name="num">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="225" parent="213" name="name">
-      <Position>2</Position>
-      <DataType>varchar(50)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="226" parent="213" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="227" parent="214" name="id">
+    <column id="216" parent="214" name="Sno">
       <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>char(8)|0s</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="228" parent="214" name="name">
+    <column id="217" parent="214" name="Sname">
       <Position>2</Position>
-      <Comment>电影名称</Comment>
-      <DataType>varchar(50)|0s</DataType>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="229" parent="214" name="cover">
+    <column id="218" parent="214" name="Sex">
       <Position>3</Position>
-      <Comment>封面图片</Comment>
-      <DataType>varchar(200)|0s</DataType>
+      <DataType>char(2)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;男&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="230" parent="214" name="duration">
+    <column id="219" parent="214" name="Age">
       <Position>4</Position>
-      <Comment>电影时长</Comment>
-      <DataType>int(11)|0s</DataType>
+      <DataType>tinyint(4)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;20&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="231" parent="214" name="box">
+    <column id="220" parent="214" name="Phonenumber">
       <Position>5</Position>
-      <Comment>票房</Comment>
-      <DataType>int(11)|0s</DataType>
+      <DataType>char(12)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="232" parent="214" name="score">
+    <column id="221" parent="214" name="Sdept">
       <Position>6</Position>
-      <Comment>豆瓣得分</Comment>
-      <DataType>double(11,1 digit)|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="233" parent="214" name="resume">
-      <Position>7</Position>
-      <Comment>描述</Comment>
-      <DataType>text|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="234" parent="214" name="is_hot">
-      <Position>8</Position>
-      <Comment>是否热门</Comment>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="235" parent="214" name="click_hit">
-      <Position>9</Position>
-      <Comment>点击次数</Comment>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="236" parent="214" name="employee_id">
-      <Position>10</Position>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="237" parent="214" name="publish_date">
-      <Position>11</Position>
-      <DataType>datetime|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="238" parent="214" name="PRIMARY">
+    <index id="222" parent="214" name="Phonenumber">
+      <ColNames>Phonenumber</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="223" parent="214" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
+      <ColNames>Sno</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="239" parent="215" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="240" parent="215" name="filmId">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="241" parent="215" name="employeeId">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="242" parent="215" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
+    <key id="224" parent="214" name="Phonenumber">
+      <ColNames>Phonenumber</ColNames>
+      <UnderlyingIndexName>Phonenumber</UnderlyingIndexName>
     </key>
-    <column id="243" parent="216" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="244" parent="216" name="filmId">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="245" parent="216" name="filmTypeId">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="246" parent="216" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="247" parent="217" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="248" parent="217" name="typeName">
-      <Position>2</Position>
-      <Comment>类型名称</Comment>
-      <DataType>varchar(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="249" parent="217" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="250" parent="218" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="251" parent="218" name="username">
-      <Position>2</Position>
-      <Comment>账号</Comment>
-      <DataType>varchar(50)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="252" parent="218" name="password">
-      <Position>3</Position>
-      <Comment>密码</Comment>
-      <DataType>varchar(100)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="253" parent="218" name="realname">
-      <Position>4</Position>
-      <Comment>姓名(管理员)</Comment>
-      <DataType>varchar(50)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="254" parent="218" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="255" parent="219" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="256" parent="219" name="filmId">
-      <Position>2</Position>
-      <Comment>电影id</Comment>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="257" parent="219" name="studioId">
-      <Position>3</Position>
-      <Comment>演出厅id</Comment>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="258" parent="219" name="price">
-      <Position>4</Position>
-      <Comment>票价</Comment>
-      <DataType>float(10,2 digit)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="259" parent="219" name="sold">
-      <Position>5</Position>
-      <Comment>已售张数</Comment>
-      <DataType>int(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="260" parent="219" name="startTime">
-      <Position>6</Position>
-      <Comment>开始时间</Comment>
-      <DataType>datetime|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="261" parent="219" name="endTime">
-      <Position>7</Position>
-      <Comment>结束时间</Comment>
-      <DataType>datetime|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="262" parent="219" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="263" parent="220" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="264" parent="220" name="studioId">
-      <Position>2</Position>
-      <Comment>演出厅id</Comment>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="265" parent="220" name="row">
-      <Position>3</Position>
-      <Comment>第几行</Comment>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="266" parent="220" name="col">
-      <Position>4</Position>
-      <Comment>第几列</Comment>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="267" parent="220" name="seatTypeId">
-      <Position>5</Position>
-      <Comment>座位状态</Comment>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="268" parent="220" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="269" parent="221" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="270" parent="221" name="name">
-      <Position>2</Position>
-      <Comment>状态名称</Comment>
-      <DataType>varchar(50)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="271" parent="221" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="272" parent="222" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="273" parent="222" name="name">
-      <Position>2</Position>
-      <Comment>演出厅名称</Comment>
-      <DataType>varchar(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="274" parent="222" name="length">
-      <Position>3</Position>
-      <Comment>演出厅长</Comment>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="275" parent="222" name="width">
-      <Position>4</Position>
-      <Comment>演出厅宽</Comment>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="276" parent="222" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="277" parent="223" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="278" parent="223" name="username">
-      <Position>2</Position>
-      <Comment>账号</Comment>
-      <DataType>varchar(50)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="279" parent="223" name="password">
-      <Position>3</Position>
-      <Comment>密码</Comment>
-      <DataType>varchar(100)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="280" parent="223" name="nickname">
-      <Position>4</Position>
-      <Comment>昵称</Comment>
-      <DataType>varchar(50)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="281" parent="223" name="tel">
-      <Position>5</Position>
-      <Comment>电话</Comment>
-      <DataType>varchar(50)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="282" parent="223" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
+    <trigger id="225" parent="214" name="insert_student">
+      <Turn>after-row</Turn>
+      <Events>I</Events>
+    </trigger>
   </database-model>
 </dataSource>

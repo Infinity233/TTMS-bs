@@ -1,6 +1,7 @@
 package com.Infinity.service;
 
 import com.Infinity.dao.SeatMapper;
+import com.Infinity.dao.StudioMapper;
 import com.Infinity.pojo.Seat;
 import com.Infinity.pojo.SeatType;
 import com.Infinity.pojo.Studio;
@@ -14,17 +15,40 @@ public class SeatService {
 
     @Autowired
     SeatMapper seatMapper;
+    @Autowired
+    StudioMapper studioMapper;
 
     public List<Seat> selectAll() {
 
         return seatMapper.selectAll();
     }
 
-//    public List<Seat> serachSeat(String seatname) {
-//
-//        List<Seat> list = seatMapper.selectBySeatnameMohu(seatname);
-//        return list;
-//    }
+    public StringBuilder[] selectByStudioId(Integer studioId) {
+
+        List<Seat> seatList = seatMapper.selectByStudioId(studioId);
+        Studio studio = studioMapper.selectByPrimaryKey(studioId);
+
+        StringBuilder[] seatMap = new StringBuilder[studio.getLength()];
+        StringBuilder t = new StringBuilder();
+
+        for (Integer i = 0; i < studio.getWidth(); i++) {
+            t.append('a');
+        }
+
+        String tmplete = t.toString();
+
+        for (int i = 0; i < seatMap.length; i++) {
+            seatMap[i] = new StringBuilder(tmplete);
+        }
+
+        for (Seat seat : seatList) {
+            if (seat.getSeatTypeId() == 3) {
+                seatMap[seat.getRow() - 1].setCharAt(seat.getCol() - 1, 'u');
+            }
+        }
+
+        return seatMap;
+    }
 
     public int insert(Seat seat) {
 
@@ -59,5 +83,52 @@ public class SeatService {
             }
         }
         return sum;
+    }
+
+    public int setUn(String[] unSeats, Integer studioId) {
+
+        Seat seat = new Seat();
+        SeatType type = new SeatType();
+        Studio studio = new Studio();
+        studio.setId(studioId);
+        type.setId(3);
+
+        seat.setStudio(studio);
+        seat.setSeatType(type);
+
+        int sum = 0;
+        for (int i = 0; i < unSeats.length; ++i) {
+            seat.setRow(unSeats[i].charAt(0) - '0');
+            seat.setCol(unSeats[i].charAt(2) - '0');
+
+            sum += seatMapper.updateByRowCol(seat);
+        }
+        return sum;
+    }
+
+    public int setAv(String[] avSeats, Integer studioId) {
+
+        Seat seat = new Seat();
+        SeatType type = new SeatType();
+        Studio studio = new Studio();
+        studio.setId(studioId);
+        type.setId(1);
+
+        seat.setStudio(studio);
+        seat.setSeatType(type);
+
+        int sum = 0;
+        for (int i = 0; i < avSeats.length; ++i) {
+            seat.setRow(avSeats[i].charAt(0) - '0');
+            seat.setCol(avSeats[i].charAt(2) - '0');
+
+            sum += seatMapper.updateByRowCol(seat);
+        }
+        return sum;
+    }
+
+    public int deleteByStudioId(String[] studioId) {
+
+        return seatMapper.deleteByStudioId(studioId);
     }
 }

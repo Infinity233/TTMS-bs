@@ -28,16 +28,32 @@
     </select>
 
     <select id="selectAll" resultMap="seatResultMap">
-        select * from t_seat;
+        select *
+        from t_seat;
+    </select>
+
+    <select id="selectByStudioId" parameterType="integer" resultMap="seatResultMap">
+        select *
+        from t_seat
+        where studioId = #{studioId};
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from t_seat
         where id = #{id,jdbcType=INTEGER}
     </delete>
+
+    <delete id="deleteByStudioId" parameterType="string">
+        delete from t_seat
+        where studioId in
+        <foreach collection="array" item="delIds" open="(" separator="," close=")">
+            #{delIds}
+        </foreach>
+    </delete>
+
     <insert id="insert" parameterType="com.Infinity.pojo.Seat">
         <!--<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">-->
-            <!--SELECT LAST_INSERT_ID()-->
+        <!--SELECT LAST_INSERT_ID()-->
         <!--</selectKey>-->
         insert into t_seat (studioId, row, col,
         seatTypeId)
@@ -96,6 +112,19 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+    <update id="updateByRowCol" parameterType="com.Infinity.pojo.Seat">
+        update t_seat
+        <set>
+            <if test="seatTypeId != null">
+                seatTypeId = #{seatTypeId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where studioId = #{studioId,jdbcType=INTEGER} and row = #{row,jdbcType=INTEGER} and col =
+        #{col,jdbcType=INTEGER}
+
+    </update>
+
     <update id="updateByPrimaryKey" parameterType="com.Infinity.pojo.Seat">
         update t_seat
         set studioId   = #{studioId,jdbcType=INTEGER},

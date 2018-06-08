@@ -185,12 +185,11 @@
         </div>
         <div class="booking-details">
 
-            <p>座位：</p>
+            <p>设置损坏座位：</p>
             <ul id="selected-seats"></ul>
-            <p>票数：<span id="counter">0</span></p>
-            <p>总计：<b>￥<span id="total">0</span></b></p>
 
-            <button class="checkout-button">确定购买</button>
+
+            <button class="checkout-button" id="change">确定修改</button>
 
             <div id="legend"></div>
         </div>
@@ -203,83 +202,146 @@
 
     $(document).ready(function () {
         var str = window.location.search;
-        console.log(str);
-        var flag1 = str.indexOf("%");
-        var flag2 = str.indexOf("=");
-        var flag3 = str.indexOf("column=");
-        var row = str.substring(flag2 + 1, flag1);
-        console.log(row);
-        var column = str.substring(flag3 + 7);
-        console.log(column);
-        var rowFlag = '';
-        for (var i = 0; i < column; i++)
-            rowFlag = rowFlag + 'a';
-        console.log(rowFlag);
+        // var flag1 = str.indexOf("%");
+        // var flag2 = str.indexOf("=");
+        // var flag3 = str.indexOf("column=");
+        // var row = str.substring(flag2 + 1, flag1);
+        // console.log(row);
+        // var column = str.substring(flag3 + 7);
+        // console.log(column);
+        // var rowFlag = '';
+        // for (var i = 0; i < column; i++)
+        //     rowFlag = rowFlag + 'a';
+        // console.log(rowFlag);
+        var studioId = str.split('=')[1];
+
         var $cart = $('#selected-seats'), //座位区
             $counter = $('#counter'), //票数
             $total = $('#total'); //总计金额
 
 
+        var seatMap;
+        var errorSeat = "";
 
-        var seatMap = [
-            'aaaaaaaaaa',
-            'aaaaaaaaaa',
-            '_a________',
-            'aaaaaaaa__',
-            'aaaaaaaaaa',
-            'aaaaaaaaaa',
-            'aaaaaaaaaa',
-            'aaaaaaaaaa',
-            'aaaaaaaaaa',
-            'aa__aa__aa'
-        ];
-
-        var sc = $('#seat-map').seatCharts({
-            map: seatMap,
-            naming: {
-                top: false,
-                getLabel: function (character, row, column) {
-                    return column;
-                }
+        $.ajax({
+            type: "post",
+            url: "/studio/checkSeat.do",
+            data: {studioId: studioId},
+            // async: true,
+            // processData: false,   //当设置为true的时候,jquery ajax 提交的时候不会序列化 data，而是直接使用data
+            error: function (request) {
+                alert("error");
             },
-            legend: { //定义图例
-                node: $('#legend'),
-                items: [
-                    ['a', 'available', '可选座'],
-                    ['a', 'unavailable', '已售出']
-                ]
-            },
-            click: function () { //点击事件
-                if (this.status() == 'available') { //可选座
-
-                    $('<li>' + (this.settings.row + 1) + '排' + this.settings.label + '座</li>')
-                        .attr('id', 'cart-item-' + this.settings.id)
-                        .data('seatId', this.settings.id)
-                        .appendTo($cart);
-
-                    $counter.text(sc.find('selected').length + 1);
-
-                    return 'selected';
-                } else if (this.status() == 'selected') { //已选中
-
-                    //更新数量
-                    $counter.text(sc.find('selected').length - 1);
-
-                    //删除已预订座位
-                    $('#cart-item-' + this.settings.id).remove();
-                    //可选座
-                    return 'available';
-                } else if (this.status() == 'unavailable') { //已售出
-
-                    return 'unavailable';
-                } else {
-
-                    return this.style();
+            success: function (data) {
+                seatMap = data.seatMap;
+                var i, j;
+                for (i = 0; i < seatMap.length; ++i) {
+                    for (j = 0; j < seatMap[i].length; ++j) {
+                        if (seatMap[i][j] == 'u') {
+                            errorSeat += (i + 1) + "_" + (j + 1) + ",";
+                        }
+                    }
                 }
+                if (errorSeat.length > 0) {
+                    errorSeat = errorSeat.slice(0, -1);
+                }
+                showSeat();
             }
         });
-        //已售出的座位
-        sc.get(['1_2', '4_4', '4_5', '6_6', '6_7', '8_5', '8_6', '8_7', '8_8', '10_1', '10_2']).status('unavailable');
+
+        var sc;
+
+        function showSeat() {
+            sc = $('#seat-map').seatCharts({
+                map: seatMap,
+                naming: {
+                    top: false,
+                    getLabel: function (character, row, column) {
+                        return column;
+                    }
+                },
+                legend: { //定义图例
+                    node: $('#legend'),
+                    items: [
+                        ['a', 'available', '座位完好'],
+                        ['a', 'unavailable', '座位损坏']
+                    ]
+                },
+                click: function () { //点击事件
+                    if (this.status() == 'available') { //可选座
+
+                        var seat = this.settings;
+
+                        if (seatMap[seat.row][seat.label - 1] == 'u') {
+                            return 'unavailable';
+                        }
+
+                        $('<li>' + (seat.row + 1) + '排' + seat.label + '座</li>')
+                            .attr('id', 'cart-item-' + seat.id)
+                            .data('seatId', seat.id)
+                            .appendTo($cart);
+
+                        $counter.text(sc.find('selected').length + 1);
+
+                        return 'selected';
+                    } else if (this.status() == 'selected') { //已选中
+
+                        //更新数量
+                        $counter.text(sc.find('selected').length - 1);
+
+                        //删除已预订座位
+                        $('#cart-item-' + this.settings.id).remove();
+                        //可选座
+                        return 'available';
+                    } else if (this.status() == 'unavailable') { //已售出
+
+                        // return 'unavailable';
+                        return 'available';
+                    } else {
+                        return this.style();
+                    }
+                }
+            });
+            // sc.get(['1_2', '4_4', '4_5', '6_6', '6_7', '8_5', '8_6', '8_7', '8_8', '10_1', '10_2']).status('unavailable');
+            sc.get(errorSeat.split(',')).status('unavailable');
+
+        }
+
+        $("#change").click(function () {
+
+            var unSeats = sc.find('unavailable');
+            var preSeats = errorSeat.split(',');
+            var un_index = 0, preIndex = 0;
+            var changeSeats = "";
+
+            for (; preIndex < preSeats.length; ++preIndex) {
+                if (preSeats[preIndex] == unSeats.seatIds[un_index]) {
+                    un_index++;
+                }
+                else {
+                    changeSeats += preSeats[preIndex] + ',';
+                }
+            }
+
+            if(changeSeats.length>0) {
+                changeSeats = changeSeats.slice(0, -1);
+            }
+
+            var un = sc.find('selected').seatIds.join(',');
+            $.ajax({
+                type: "post",
+                url: "/seat/setSeats.do",
+                data: {toUn: un, toAv: changeSeats, studioId:studioId},
+                error: function (request) {
+                    alert("修改失败");
+                },
+                success: function (data) {
+                    alert("修改成功");
+                    window.location.reload();
+                }
+            });
+
+        });
 
     });
 </script>

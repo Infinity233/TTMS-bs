@@ -2,10 +2,13 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" " http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+    <settings>
+        <!-- 通过日志记录显示mybatis的执行过程 -->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
     <typeAliases>
         <package name="com.Infinity.pojo"/>
     </typeAliases>
-
     <!--<mappers>-->
         <!--&lt;!&ndash;xml必须与接口名称一致&ndash;&gt;-->
         <!--<package name="com.Infinity.dao"/>-->
