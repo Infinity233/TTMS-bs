@@ -45,7 +45,7 @@ public class StudioController {
         finalJson.add("data", jsonArray);
         return finalJson.toString();
     }
-
+    
     @RequestMapping("checkSeat")
     public String selectSeat(Integer studioId) {
 

@@ -18,12 +18,6 @@ public class StudioService {
         return studioMapper.selectAll();
     }
 
-//    public List<Studio> serachStudio(String studioname) {
-//
-//        List<Studio> list = studioMapper.selectByStudionameMohu(studioname);
-//        return list;
-//    }
-
     public int insert(Studio studio) {
 
         return studioMapper.insert(studio);
@@ -38,16 +32,4 @@ public class StudioService {
 
         return studioMapper.deleteByIds(list);
     }
-//
-//
-//    public boolean isExist(String studioname) {
-//
-//        Boolean exist = true;
-//
-//        if(studioMapper.selectByStudioname(studioname)==0) {
-//            exist = false;
-//        }
-//
-//        return exist;
-//    }
 }

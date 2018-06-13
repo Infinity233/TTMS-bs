@@ -1,6 +1,7 @@
 package com.Infinity.dao;
 
 import com.Infinity.pojo.Film;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -23,4 +24,15 @@ public interface FilmMapper {
     int updateByPrimaryKey(Film record);
 
     List<Film> selectAll();
+
+    List<Film> selectHotFilm();
+
+    List<Film> selectLastestThree();
+
+    List<Film> selectByFilmnameMohu(@Param("name") String name);
+
+    int deleteByIds(String[] delIds);
+
+    @Select("select cover from t_film where id = #{id}")
+    String getImagePathById(Integer id);
 }

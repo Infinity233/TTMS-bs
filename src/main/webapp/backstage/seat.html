@@ -154,24 +154,6 @@
             text-align: center
         }
     </style>
-    <script type="text/javascript">
-        // $(function(){
-        // 	getdata();
-        // })
-        // function getdata(){
-        // 	console.log(window.location.search);
-        // 	var str = window.location.search;
-        // 	console.log(str);
-        // 	var flag1 = str.indexOf("%");
-        // 	var flag2 = str.indexOf("=");
-        // 	var flag3 =str.indexOf("column=");
-        // 	var row = str.substring(flag2+1,flag1);
-        // 	console.log(row);
-        // 	var column = str.substring(flag3+7);
-        // 	console.log(column);
-
-        // }
-    </script>
 
 </head>
 
@@ -201,7 +183,6 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        var str = window.location.search;
         // var flag1 = str.indexOf("%");
         // var flag2 = str.indexOf("=");
         // var flag3 = str.indexOf("column=");
@@ -213,6 +194,7 @@
         // for (var i = 0; i < column; i++)
         //     rowFlag = rowFlag + 'a';
         // console.log(rowFlag);
+        var str = window.location.search;
         var studioId = str.split('=')[1];
 
         var $cart = $('#selected-seats'), //座位区

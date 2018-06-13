@@ -18,6 +18,13 @@ public class UserService {
         return userMapper.selectAll();
     }
 
+    public User login(String username, String password) {
+
+        User resultUser = userMapper.login(username, password);
+
+        return resultUser;
+    }
+
     public List<User> serachUser(String username) {
 
         List<User> list = userMapper.selectByUsernameMohu(username);

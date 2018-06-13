@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="../layui-v2.3.0/layui/css/layui.css" media="all">
     <script src="../layui-v2.3.0/layui/layui.js"></script>
 
-    <link rel="stylesheet" href="../layui-v2.3.0/layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="../css/font_eolqem241z66flxr.css" media="all"/>
     <link rel="stylesheet" href="../css/news.css" media="all"/>
 </head>

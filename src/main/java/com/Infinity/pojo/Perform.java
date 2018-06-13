@@ -9,36 +9,27 @@ import java.util.Date;
  */
 public class Perform implements Serializable {
     private Integer id;
-
-    /**
-     * 电影id
-     */
-    private Integer filmId;
-
-    /**
-     * 演出厅id
-     */
-    private Integer studioId;
-
     /**
      * 票价
      */
-    private Float price;
+    private Float price;    // 票价
 
     /**
      * 已售张数
      */
-    private Integer sold;
+    private Integer sold;   // 已售张数
 
     /**
      * 开始时间
      */
-    private Date startTime;
+    private Date startTime; // 开始时间
 
     /**
      * 结束时间
      */
-    private Date endTime;
+    private Date endTime;   // 结束时间
+    private Film film = new Film();
+    private Studio studio = new Studio();
 
     public Integer getId() {
         return id;
@@ -49,19 +40,19 @@ public class Perform implements Serializable {
     }
 
     public Integer getFilmId() {
-        return filmId;
+        return film.getId();
     }
 
     public void setFilmId(Integer filmId) {
-        this.filmId = filmId;
+        film.setId(filmId);
     }
 
     public Integer getStudioId() {
-        return studioId;
+        return studio.getId();
     }
 
     public void setStudioId(Integer studioId) {
-        this.studioId = studioId;
+        studio.setId(studioId);
     }
 
     public Float getPrice() {
@@ -100,12 +91,12 @@ public class Perform implements Serializable {
     public String toString() {
         return "Perform{" +
                 "id=" + id +
-                ", filmId=" + filmId +
-                ", studioId=" + studioId +
                 ", price=" + price +
                 ", sold=" + sold +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
+                ", film=" + film +
+                ", studio=" + studio +
                 '}';
     }
 }

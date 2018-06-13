@@ -18,6 +18,13 @@ public class ManagerService {
         return managerMapper.selectAll();
     }
 
+    public Manager login(String username, String password) {
+
+        Manager resultManager = managerMapper.login(username, password);
+
+        return resultManager;
+    }
+    
     public List<Manager> serachManager(String username) {
 
         List<Manager> list = managerMapper.selectByUsernameMohu(username);

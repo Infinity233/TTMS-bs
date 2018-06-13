@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -21,6 +22,22 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @RequestMapping("/login")
+    public String userLogin(String username, String password, HttpSession session) {
+        User user = userService.login(username, password);
+        JsonObject jsonObject = new JsonObject();
+
+        if (user == null) {
+            jsonObject.addProperty("errorMsg", "用户名或密码错误");
+        }
+        else {
+            jsonObject.addProperty("success",1);
+            session.setAttribute("currentUser", user);
+        }
+
+        return jsonObject.toString();
+    }
+
     @RequestMapping("/selectAll")
     public String selectAll() {
 
@@ -28,18 +45,12 @@ public class UserController {
         JsonObject finalJson = new JsonObject();
         JsonArray jsonArray = new JsonArray();
 
-        finalJson.addProperty("code", 0);
-        finalJson.addProperty("msg", "");
-
         List<User> users = userService.selectAll();
 
+        finalJson.addProperty("code", 0);
+        finalJson.addProperty("msg", "");
         finalJson.addProperty("count", users.size());
-
-        for (User user : users) {
-            jsonArray.add(gson.toJsonTree(user));
-        }
-
-        finalJson.add("data", jsonArray);
+        finalJson.add("data", gson.toJsonTree(users));
         return finalJson.toString();
     }
 

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Basic Page Needs
+  ================================================== -->
+    <meta charset="utf-8">
+    <title>zMovie</title>
+    <meta name="description" content="Free Responsive Html5 Css3 Templates | zerotheme.com">
+    <meta name="author" content="www.zerotheme.com">
+
+    <!-- Mobile Specific Metas
+  ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+  ================================================== -->
+    <link rel="stylesheet" href="css/zerogrid.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!--[if lt IE 8]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+        <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+            <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0"
+                 height="42" width="820"
+                 alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."/>
+        </a>
+    </div>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <script src="js/html5.js"></script>
+    <script src="js/css3-mediaqueries.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="../layui-v2.3.0/layui/css/layui.css" media="all">
+    <script src="../layui-v2.3.0/layui/layui.js"></script>
+    <script src="js/base64.js"></script>
+    <script>
+        function formatTime(d) {
+            var start = d.startTime;
+            var end = d.endTime;
+
+            if (end != null) {
+                end = end.substring(end.indexOf(' ') + 1);
+            }
+            console.log(start + " ~ " + end);
+            return start + "~" + end;
+        }
+    </script>
+</head>
+<body>
+<div class="wrap-body">
+
+    <!--////////////////////////////////////Header-->
+    <header>
+        <div class="top-bar">
+            <div class="wrap-top zerogrid">
+                <div class="row">
+                    <div class="col-1-2">
+                        <div class="wrap-col">
+                            <ul>
+                                <li class="mail"><p>734750935@qq.com</p></li>
+                                <li class="phone"><p>820 820 8820</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap-header zerogrid">
+            <div class="row">
+                <div class="col-1-2">
+                    <div class="wrap-col">
+                        <div class="logo"><a href="#"><img src="images/logo.png"/></a></div>
+                    </div>
+                </div>
+                <div class="col-1-2">
+                    <div class="wrap-col f-right">
+                        <form method="get" action="/search" id="search">
+                            <input name="q" type="text" size="40" placeholder="Search..."/>
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--顶部导航栏-->
+
+            <div class="row">
+                <div id="menu">
+                    <nav>
+                        <div class="wrap-nav">
+                            <ul>
+                                <li class="active"><a href="main.html">Home</a></li>
+                                <li><a href="single.html">GREATEST FILMS</a></li>
+                                <li><a href="single.html">THE BEST</a></li>
+                                <li><a href="single.html">OSCARS</a></li>
+                                <li><a href="single.html">GENRES</a></li>
+                                <li><a href="single.html">QUOTES</a></li>
+                                <li><a href="single.html">POSTERS</a></li>
+                                <li><a href="contact.html">CONTACT</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section id="container">
+        <div class="wrap-container zerogrid">
+            <div id="main-content" class="col-2-3">
+                <div class="wrap-content">
+                    <article>
+                        <div class="art-header">
+                            <div class="col-1-3">
+                                <div class="wrap-col" style="margin-right: 10px">
+                                    <img id="film_cover" src="" alert="暂无图片"/>
+                                </div>
+                            </div>
+                            <div class="col-2-3">
+                                <div class="wrap-col">
+                                    <ul>
+                                        <li><p id="filmname"></p></li>
+                                        <li><p id="filmtype"></p></li>
+                                        <li><p id="duration">时长（分）:</p></li>
+                                        <li><p id="publishDate"> 中国大陆上映</p></li>
+                                        <li><p id="employees">主演: </p></li>
+                                        <li><p id="score">评分: </p></li>
+                                        <li><p id="director">导演: </p></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="art-content">
+
+                            <table class="layui-hide" id="idTest" lay-filter="demo"></table>
+                            <!--<table class="layui-table"-->
+                            <!--lay-data="{cellMinWidth: 80 , url:'/perform/selectAll.do', id:'idTest'}"-->
+                            <!--lay-filter="demo">-->
+                            <!--<thead>-->
+                            <!--<tr>-->
+                            <!--<th lay-data="{field:'film', templet: '<div>{{d.film.name}}</div>'}">电影名</th>-->
+                            <!--<th lay-data="{field:'studio', templet: '<div>{{d.studio.name}}</div>'}">演出厅名</th>-->
+                            <!--<th lay-data="{field:'price'}">票价</th>-->
+                            <!--<th lay-data="{field:'startTime', templet:function(d){return formatTime(d);}}">-->
+                            <!--开始时间-->
+                            <!--</th>-->
+                            <!--<th lay-data="{fixed: 'right', align:'center', toolbar: '#barDemo'}"></th>-->
+                            <!--</tr>-->
+                            <!--</thead>-->
+                            <!--</table>-->
+
+                            <div class="clear"></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div id="sidebar" class="col-1-3">
+                <div class="wrap-sidebar">
+                    <!---- Start Widget ---->
+                    <div class="widget wid-new-updates">
+                        <div class="wid-header">
+                            <h5>Hot Updates !</h5>
+                        </div>
+                        <div class="wid-content">
+                            <ul>
+                                <li><a href="#">Mad Max: Fury Road</a><span><img src="images/hot.png"/></span></li>
+                                <li><a href="#">The Age of Adaline</a><span><img src="images/hot.png"/></span></li>
+                                <li><a href="#">Pound of Flesh</a><span><img src="images/hot.png"/></span></li>
+                                <li><a href="#">Bloodbath Island</a><span><img src="images/hot.png"/></span></li>
+                                <li><a href="#">Pound of Flesh</a><span><img src="images/hot.png"/></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!---- Start Widget ---->
+                    <div class="widget wid-post">
+                        <div class="wid-header">
+                            <h5>Today's movies</h5>
+                        </div>
+                        <div class="wid-content">
+                            <div id="today_list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--////////////////////////////////////Footer-->
+    <footer>
+        <div class="zerogrid">
+            <div class="wrap-footer">
+                <div class="row">
+                    <div class="col-1-4">
+                        <div class="wrap-col">
+                            <div class="widget wid-about">
+                                <div class="wid-header">
+                                    <h5>Welcome</h5>
+                                </div>
+                                <div class="logo"><a href="#"><img src="images/logo.png"/></a></div>
+                                <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque quod maxime placeat
+                                    facere possimus nihil impedit quo minus id quod maxime placeat facere possimus. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1-4">
+                        <div class="wrap-col">
+                            <div class="widget wid-meta">
+                                <div class="wid-header">
+                                    <h5>Links List</h5>
+                                </div>
+                                <div class="widget-content">
+                                    <div class="row">
+                                        <ul>
+                                            <li><a href="#">> Lorem ipsum dolor sit </a></li>
+                                            <li><a href="#">> Nullam venenatis lacus a </a></li>
+                                            <li><a href="#">> Morbi ut sapien nec nisl</a></li>
+                                            <li><a href="#">> Integer a enim ac ex.</a></li>
+                                            <li><a href="#">> Sed in nunc non eleifend </a></li>
+                                            <li><a href="#">> Integer a enim ac ex.</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1-4">
+                        <div class="wrap-col">
+                            <div class="widget wid-report">
+                                <div class="wid-header">
+                                    <h5>Report Link</h5>
+                                </div>
+                                <div class="wid-content">
+                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                                        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                                        voluptua.
+                                        At vero eos et accusam et justo duo dolores et ea rebum. Consetetur sadipscing
+                                        elitr,
+                                        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1-4">
+                        <div class="wrap-col">
+                            <div class="widget wid-meta">
+                                <div class="wid-header">
+                                    <h5>Links List</h5>
+                                </div>
+                                <div class="widget-content">
+                                    <div class="row">
+                                        <ul>
+                                            <li><a href="#">> Lorem ipsum dolor sit </a></li>
+                                            <li><a href="#">> Nullam venenatis lacus a </a></li>
+                                            <li><a href="#">> Morbi ut sapien nec nisl</a></li>
+                                            <li><a href="#">> Integer a enim ac ex.</a></li>
+                                            <li><a href="#">> Sed in nunc non eleifend </a></li>
+                                            <li><a href="#">> Integer a enim ac ex.</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</div>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="buy">购票</a>
+</script>
+<script>
+    var b = new Base64();
+    // var str = b.encode("admin:admin");
+    // alert("base64 encode:" + str);
+    // //解密
+    // str = b.decode(str);
+    // alert("base64 decode:" + str);
+    layui.use(['table'], function () {
+        var table = layui.table;
+        var $ = layui.$;
+        var form = layui.form
+            , layer = layui.layer;
+
+        var str = window.location.search;
+        var id = str.split('=')[1];// thymeleaf
+
+        table.render({
+            elem: '#idTest'
+            , url: '/perform/selectByFilmId.do?id=' + id
+            , cellMinWidth: 80
+            , id: 'idTest'
+            , cols: [[
+                {field: 'studio', templet: '<div>{{d.studio.name}}</div>', title: '演出厅'}
+                , {
+                    field: 'startTime', templet: function (d) {
+                        return formatTime(d)
+                    }, title: '开始时间'
+                }
+                , {field: 'price', width: 80, title: '票价'}
+                , {fixed: 'right', width: 80, align: 'center', toolbar: '#barDemo'}
+            ]]
+        });
+        $.ajax({
+            type: 'POST',
+            url: '/film/selectById.do',
+            data: {id: id},
+            async: false,
+            dataType: "json",
+            success: function (data) {
+                data = data.data;
+                console.log(data);
+                $("#film_cover").attr("src", data.cover);
+                $("#filmname").text(data.name);
+                $("#filmtype").text(getFilmType(data));
+                $("#duration").append(data.duration);
+                $("#publishDate").prepend(data.publishDate);
+                $("#employees").append(getActer(data));
+                $("#score").append(data.score);
+                $("#director").append(data.director.name);
+
+            },
+            error: function () {
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: '/film/selectToday.do',
+            async: false,
+            dataType: "json",
+            success: function (data) {
+                var movies = data.data;
+                var movie_list = $("#today_list");
+                movie_list.empty();
+                for (var i = 0; i < movies.length; ++i) {
+                    if (movies[i] != null) {
+                        movie_list.append(
+                            '<div class="post">'
+                            + '<a href="single.html?id=' + movies[i].id + '"><img src="..' + movies[i].cover + '"/></a>'
+                            + '<div class="wrapper">'
+                            + '<a href="#"><h6>' + movies[i].name + '</h6></a>'
+                            + '<p>' + movies[i].publishDate + '</p>'
+                            + '<a href="#"><img src="images/star.png"/></a></div></div>'
+                        );
+                    }
+                }
+            },
+            error: function () {
+
+            }
+        });
+
+        function getActer(d) {
+
+            var acterList = d.employees;
+            var returnStr = "";
+            for (var i = 0; i < 2 && i < acterList.length; ++i) {
+                returnStr += acterList[i].name + "、";
+            }
+
+            if (returnStr.length > 0) {
+                returnStr = returnStr.slice(0, -1);
+            }
+            return returnStr;
+        }
+
+        function getFilmType(d) {
+
+            var typeList = d.filmTypes;
+            var returnStr = "";
+            for (var i = 0; typeList.length >= 1 && i < 1; ++i) {
+                returnStr += typeList[i].typeName + "、";
+            }
+
+            if (returnStr.length > 0) {
+                returnStr = returnStr.slice(0, -1);
+            }
+            return returnStr;
+        }
+
+        //监听工具条
+        table.on('tool(demo)', function (obj) {
+            var data = obj.data;
+            var jiamidata = b.encode(JSON.stringify(data));
+            if (obj.event === 'buy') {
+                layer.open({
+                    type: 2,
+                    shade: false,
+                    area: ['790px', '580px'],
+                    maxmin: true,
+                    content: '/reception/buy.html?perform=' + jiamidata,
+                    zIndex: layer.zIndex, //重点1
+                    success: function (layero) {
+                        layer.setTop(layero); //重点2
+                    }
+                });
+
+            }
+        });
+        //
+        // var $ = layui.$, active = {
+        //     getCheckData: function () { //获取选中数据
+        //         var checkStatus = table.checkStatus('idTest')
+        //             , data = checkStatus.data;
+        //         layer.alert(JSON.stringify(data));
+        //     }
+        //     , getCheckLength: function () { //获取选中数目
+        //         var checkStatus = table.checkStatus('idTest')
+        //             , data = checkStatus.data;
+        //         layer.msg('选中了：' + data.length + ' 个');
+        //     }
+        //     , isAll: function () { //验证是否全选
+        //         var checkStatus = table.checkStatus('idTest');
+        //         layer.msg(checkStatus.isAll ? '全选' : '未全选')
+        //     }
+        //     , delete_performs: function () {
+        //         var checkStatus = table.checkStatus('idTest')
+        //             , data = checkStatus.data;
+        //
+        //         var resStr = data[0].id.toString();
+        //         for (var i = 1; i < data.length; ++i) {
+        //             resStr += "," + data[i].id;
+        //
+        //         }
+        //         deleteperforms(resStr);
+        //     }
+        //     , add_perform: function () {
+        //
+        //         loadForm();
+        //
+        //         $('#reset').trigger("click");
+        //         layer.open({
+        //             type: 1
+        //             , title: '添加数据'
+        //             // ,shade: 0
+        //             // ,maxmin: true
+        //             , content: $("#performForm")
+        //             , zIndex: layer.zIndex
+        //         });
+        //
+        //     }
+        //     , reload: function () {
+        //         table.reload('idTest', {
+        //             url: '/perform/selectByperformname.do'
+        //             , where: {
+        //                 performname: $("#search_performName").val()
+        //             } //设定异步数据接口的额外参数
+        //             //,height: 300
+        //         });
+        //     }
+        // };
+        //
+        // $('.demoTable .layui-btn').on('click', function () {
+        //     var type = $(this).data('type');
+        //     active[type] ? active[type].call(this) : '';
+        // });
+
+    });
+</script>
+</body>
+</html>

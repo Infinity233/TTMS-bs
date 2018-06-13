@@ -26,6 +26,9 @@ public interface ManagerMapper {
 
     List<Manager> selectByUsernameMohu(@Param("username") String username);
 
+    @Select("select * from t_manager where username=#{username} and password=#{password}")
+    Manager login(@Param("username") String username, @Param("password") String password);
+
     @Select("select count(*) from t_manager where username=#{username}")
     int selectByUsername(@Param("username") String username);
 

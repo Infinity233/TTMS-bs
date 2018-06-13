@@ -29,6 +29,14 @@ public class Employee implements Serializable {
         this.name = name;
     }
 
+    public Employee() {
+
+    }
+
+    public Employee(String name) {
+        this.name = name;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {

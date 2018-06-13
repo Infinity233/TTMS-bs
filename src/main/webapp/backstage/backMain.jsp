@@ -88,7 +88,7 @@
                             </a>
                         </dd>
                         <dd>
-                            <a href="javascript:;" data-url="newTimeManage.jsp">
+                            <a href="javascript:;" data-url="performManage.jsp">
                                 <i class="iconfont icon-iconfuzhi01" data-icon='icon-iconfuzhi01'></i>
                                 <span>场次管理</span>
                             </a>

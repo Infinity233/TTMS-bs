@@ -10,18 +10,35 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@Controller
-@RequestMapping("/managerr")
+@RestController
+@RequestMapping("/manager")
 public class ManagerController {
 
     @Autowired
     ManagerService managerService;
 
+    @RequestMapping("/login")
+    public String managerLogin(String username, String password, HttpSession session) {
+        Manager manager = managerService.login(username, password);
+        JsonObject jsonObject = new JsonObject();
+
+        if (manager == null) {
+            jsonObject.addProperty("errorMsg", "用户名或密码错误");
+        }
+        else {
+            jsonObject.addProperty("success",1);
+            session.setAttribute("currentManager", manager);
+        }
+
+        return jsonObject.toString();
+    }
+    
     @RequestMapping("/selectAll")
-    @ResponseBody
     public String selectAll() {
 
         Gson gson = new Gson();
@@ -44,7 +61,6 @@ public class ManagerController {
     }
 
     @RequestMapping("/mohuSelect")
-    @ResponseBody
     public String selectByUsername(String username) {
 
         if (username == null || username.equals("")) {
@@ -74,7 +90,6 @@ public class ManagerController {
     }
 
     @RequestMapping("/delete")
-    @ResponseBody
     public String delManagers(String delIds) {
 
         String errorMsg = "";
@@ -94,7 +109,6 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    @ResponseBody
     public String addManager(Manager manager) {
 
         JsonObject finalJson = new JsonObject();

@@ -29,7 +29,7 @@ public class Film implements Serializable {
     /**
      * 票房
      */
-    private Integer box;
+    private Integer box = 0;
 
     /**
      * 豆瓣得分
@@ -39,7 +39,7 @@ public class Film implements Serializable {
     /**
      * 是否热门
      */
-    private Integer isHot;
+    private Integer isHot = 0;
 
     /**
      * 点击次数
@@ -58,6 +58,14 @@ public class Film implements Serializable {
     private List<Employee> employees;       // 演员
 
     private static final long serialVersionUID = 1L;
+
+    public Integer getEmployeeId() {
+        return director.getId();
+    }
+
+    public void setEmployeeId(Integer id) {
+        director.setId(id);
+    }
 
     public Integer getId() {
         return id;

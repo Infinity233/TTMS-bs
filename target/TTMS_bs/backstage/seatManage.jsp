@@ -12,9 +12,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <link rel="stylesheet" href="../layui-v2.3.0/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../layui-v2.3.0/layui/css/layui.css" media="all"/>
     <script src="../layui-v2.3.0/layui/layui.js"></script>
 
-    <link rel="stylesheet" href="../layui-v2.3.0/layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="../css/font_eolqem241z66flxr.css" media="all"/>
     <link rel="stylesheet" href="../css/news.css" media="all"/>
 </head>
@@ -122,7 +122,6 @@
         });
 
 
-
         // 修改
         $("#imageAction").click(function () {
             $.ajax({
@@ -140,7 +139,7 @@
                     });
                 },
                 success: function (data) {
-                    if(data.errorMsg) {
+                    if (data.errorMsg) {
                         layer.confirm(data.errorMsg, {
                             skin: 'layui-layer-molv'
                             , title: "修改失败"
@@ -149,7 +148,7 @@
                         });
                     } else {
                         layer.msg("您已成功修改一条数据");
-                        table.reload('idTest',{});
+                        table.reload('idTest', {});
                     }
                 }
             });
@@ -159,7 +158,7 @@
             $.ajax({
                 type: "post",
                 url: "/seat/delete.do",
-                data: { delIds: ids },
+                data: {delIds: ids},
                 async: true,
                 // processData: false,   //当设置为true的时候,jquery ajax 提交的时候不会序列化 data，而是直接使用data
                 error: function (request) {
@@ -172,7 +171,7 @@
                 },
                 success: function (data) {
                     layer.msg("删除成功");
-                    table.reload('idTest',{});
+                    table.reload('idTest', {});
                 }
             });
         }
@@ -233,18 +232,18 @@
                 var checkStatus = table.checkStatus('idTest');
                 layer.msg(checkStatus.isAll ? '全选' : '未全选')
             }
-            , delete_users: function() {
+            , delete_users: function () {
                 var checkStatus = table.checkStatus('idTest')
                     , data = checkStatus.data;
 
                 var resStr = data[0].id.toString();
-                for(var i=1;i<data.length;++i) {
-                    resStr+=","+data[i].id;
+                for (var i = 1; i < data.length; ++i) {
+                    resStr += "," + data[i].id;
 
                 }
                 deleteUsers(resStr);
             }
-            , add_user: function() {
+            , add_user: function () {
 
                 $("#id").val("");
                 $("#username").val("");
@@ -261,11 +260,11 @@
                 });
 
             }
-            , reload: function() {
+            , reload: function () {
                 table.reload('idTest', {
                     url: '/seat/selectByUsername.do'
-                    ,where: {
-                        username:$("#search_username").val()
+                    , where: {
+                        username: $("#search_username").val()
                     } //设定异步数据接口的额外参数
                     //,height: 300
                 });

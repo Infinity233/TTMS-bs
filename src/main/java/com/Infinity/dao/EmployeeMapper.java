@@ -25,4 +25,7 @@ public interface EmployeeMapper {
 
     @Select("select * from t_employee em where id in (select employeeId from t_film_employee where filmId = #{id})")
     List<Employee> selectByFilmId(int id);
+
+    @Select("select id from t_employee where name = #{name}")
+    Integer selectByname(String name);
 }

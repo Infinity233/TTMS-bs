@@ -15,9 +15,20 @@
 
         <association property="director" column="employee_id"
                      select="com.Infinity.dao.EmployeeMapper.selectByPrimaryKey"/>
-        <collection property="filmTypes" column="id" select="com.Infinity.dao.FilmTypeDao.selectByFilmId"/>
+        <collection property="filmTypes" column="id" select="com.Infinity.dao.FilmTypeMapper.selectByFilmId"/>
         <collection property="employees" column="id" select="com.Infinity.dao.EmployeeMapper.selectByFilmId"/>
     </resultMap>
+
+    <resultMap id="JustIdNameResultMap" type="com.Infinity.pojo.Film">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+
+    <resultMap extends="JustIdNameResultMap" id="cebian" type="com.Infinity.pojo.Film">
+        <result column="publish_date" jdbcType="TIMESTAMP" property="publishDate"/>
+        <result column="cover" jdbcType="VARCHAR" property="cover"/>
+    </resultMap>
+
     <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Infinity.pojo.Film">
         <result column="resume" jdbcType="LONGVARCHAR" property="resume"/>
     </resultMap>
@@ -31,6 +42,21 @@
     <select id="selectAll" resultMap="ResultMapWithBLOBs">
         select *
         from t_film
+    </select>
+
+    <select id="selectHotFilm" resultMap="JustIdNameResultMap">
+        select id, name from t_film where is_hot = 1
+    </select>
+
+    <select id="selectLastestThree" resultMap="cebian">
+        select id, name, cover, publish_date from t_film order by publish_date DESC limit 0,3;
+    </select>
+
+    <select id="selectByFilmnameMohu" parameterType="string" resultMap="BaseResultMap">
+        select * from t_film
+        <if test="name != null">
+            where name like concat('%', #{name,jdbcType=VARCHAR}, '%')
+        </if>
     </select>
 
     <!--===================================================================-->
@@ -47,6 +73,14 @@
         delete from t_film
         where id = #{id,jdbcType=INTEGER}
     </delete>
+
+    <delete id="deleteByIds" parameterType="string">
+        delete from t_film where id in
+        <foreach collection="array" item="delIds" open="(" separator="," close=")">
+            #{delIds}
+        </foreach>
+    </delete>
+
     <insert id="insert" parameterType="com.Infinity.pojo.Film">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
@@ -60,10 +94,7 @@
         #{employeeId,jdbcType=INTEGER}, #{publishDate,jdbcType=TIMESTAMP}, #{resume,jdbcType=LONGVARCHAR}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.Infinity.pojo.Film">
-        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
+    <insert id="insertSelective" parameterType="com.Infinity.pojo.Film" useGeneratedKeys="true" keyProperty="id">
         insert into t_film
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">

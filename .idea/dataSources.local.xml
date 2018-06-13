@@ -9,7 +9,7 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <introspection-schemas>*:shiyan,ttms</introspection-schemas>
+      <introspection-schemas>*:ttms</introspection-schemas>
     </data-source>
     <data-source name="shiyan" uuid="d93e9289-d792-496e-8873-3c491eda2809">
       <database-info product="MySQL" version="5.5.37" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.44 ( Revision: b3cda4f864902ffdde495b9df93937c3e20009be )">

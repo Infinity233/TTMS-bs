@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Infinity.dao.TicketMapper">
+    <resultMap id="BaseResultMap" type="com.Infinity.pojo.Ticket">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="performId" jdbcType="INTEGER" property="performId"/>
+        <result column="row" jdbcType="INTEGER" property="row"/>
+        <result column="col" jdbcType="INTEGER" property="col"/>
+        <result column="seatTypeId" jdbcType="INTEGER" property="seatTypeId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, performId, row, col, seatTypeId
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_ticket
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectSoldedByPerformId" resultMap="BaseResultMap">
+        select * from t_ticket where performId = #{id} and seatTypeId = 2
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_ticket
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByPerformId" parameterType="string">
+        delete from t_ticket
+        where performId in
+        <foreach collection="array" item="delIds" open="(" separator="," close=")">
+            #{delIds}
+        </foreach>
+    </delete>
+
+    <update id="updateTicketStatus" parameterType="com.Infinity.pojo.Ticket">
+        update t_ticket set seatTypeId = #{ticket.seatTypeId}
+        where performId = #{ticket.performId} and row = #{ticket.row} and col = #{ticket.col}
+    </update>
+
+    <insert id="insert" parameterType="com.Infinity.pojo.Ticket">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_ticket (performId, row, col,
+        seatTypeId)
+        values (#{performId,jdbcType=INTEGER}, #{row,jdbcType=INTEGER}, #{col,jdbcType=INTEGER},
+        #{seatTypeId,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.Infinity.pojo.Ticket">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_ticket
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="performId != null">
+                performId,
+            </if>
+            <if test="row != null">
+                row,
+            </if>
+            <if test="col != null">
+                col,
+            </if>
+            <if test="seatTypeId != null">
+                seatTypeId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="performId != null">
+                #{performId,jdbcType=INTEGER},
+            </if>
+            <if test="row != null">
+                #{row,jdbcType=INTEGER},
+            </if>
+            <if test="col != null">
+                #{col,jdbcType=INTEGER},
+            </if>
+            <if test="seatTypeId != null">
+                #{seatTypeId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.Infinity.pojo.Ticket">
+        update t_ticket
+        <set>
+            <if test="performId != null">
+                performId = #{performId,jdbcType=INTEGER},
+            </if>
+            <if test="row != null">
+                row = #{row,jdbcType=INTEGER},
+            </if>
+            <if test="col != null">
+                col = #{col,jdbcType=INTEGER},
+            </if>
+            <if test="seatTypeId != null">
+                seatTypeId = #{seatTypeId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.Infinity.pojo.Ticket">
+        update t_ticket
+        set performId  = #{performId,jdbcType=INTEGER},
+            row        = #{row,jdbcType=INTEGER},
+            col        = #{col,jdbcType=INTEGER},
+            seatTypeId = #{seatTypeId,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
