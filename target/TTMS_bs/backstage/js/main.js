@@ -1,15 +1,3 @@
-/*
-* @Author: Larry
-* @Date:   2016-12-15 17:20:54
-* @Last Modified by:   qinsh
-* @Last Modified time: 2016-12-24 21:51:08
-* +----------------------------------------------------------------------
-* | LarryBlogCMS [ LarryCMS网站内容管理系统 ]
-* | Copyright (c) 2016-2017 http://www.larrycms.com All rights reserved.
-* | Licensed ( http://www.larrycms.com/licenses/ )
-* | Author: qinshouwei <313492783@qq.com>
-* +----------------------------------------------------------------------
-*/
 var myChart = echarts.init(document.getElementById('larry-seo-stats'));
 option = {
     title : {

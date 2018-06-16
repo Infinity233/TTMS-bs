@@ -119,27 +119,27 @@
 
                     </dl>
                 </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">
-                        <i class="iconfont icon-jiaoseguanli"></i>
-                        <span>售票信息管理</span>
-                        <em class="layui-nav-more"></em>
-                    </a>
-                    <dl class="layui-nav-child">
-                        <dd>
-                            <a href="javascript:;" data-url="newTicketManage.jsp">
-                                <i class="iconfont icon-iconfuzhi01" data-icon='icon-iconfuzhi01'></i>
-                                <span>售票信息管理</span>
-                            </a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" data-url="newTicketUserManage.jsp">
-                                <i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>
-                                <span>用户票务管理</span>
-                            </a>
-                        </dd>
-                    </dl>
-                </li>
+                <%--<li class="layui-nav-item">--%>
+                    <%--<a href="javascript:;">--%>
+                        <%--<i class="iconfont icon-jiaoseguanli"></i>--%>
+                        <%--<span>售票信息管理</span>--%>
+                        <%--<em class="layui-nav-more"></em>--%>
+                    <%--</a>--%>
+                    <%--<dl class="layui-nav-child">--%>
+                        <%--<dd>--%>
+                            <%--<a href="javascript:;" data-url="newTicketManage.jsp">--%>
+                                <%--<i class="iconfont icon-iconfuzhi01" data-icon='icon-iconfuzhi01'></i>--%>
+                                <%--<span>售票信息管理</span>--%>
+                            <%--</a>--%>
+                        <%--</dd>--%>
+                        <%--<dd>--%>
+                            <%--<a href="javascript:;" data-url="newTicketUserManage.jsp">--%>
+                                <%--<i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>--%>
+                                <%--<span>用户票务管理</span>--%>
+                            <%--</a>--%>
+                        <%--</dd>--%>
+                    <%--</dl>--%>
+                <%--</li>--%>
             </ul>
         </div>
     </div>

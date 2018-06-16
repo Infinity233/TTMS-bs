@@ -199,14 +199,7 @@
                     type: 1
                     , title: '编辑数据'
                     , area: ['500px', '350px']
-                    // ,shade: 0
-                    // ,maxmin: true
                     , content: $("#userForm")
-                    //将数据表格不隐藏显示
-                    // ,btn: ['关闭']
-                    // ,btn1: function(){
-                    //     layer.closeAll();
-                    // }
                     , zIndex: layer.zIndex
                 });
 

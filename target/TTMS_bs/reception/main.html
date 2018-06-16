@@ -63,8 +63,8 @@
                 <div class="col-1-2">
                     <div class="wrap-col f-right">
                         <form method="get" action="/search" id="search">
-                            <input name="q" type="text" size="40" placeholder="Search..."/>
-                            <input type="submit" value="Submit">
+                            <input name="q" type="text" size="40"/>
+                            <input type="submit" value="搜索">
                         </form>
                     </div>
                 </div>
@@ -77,14 +77,14 @@
                     <nav>
                         <div class="wrap-nav">
                             <ul>
-                                <li class="active"><a href="main.html">Home</a></li>
-                                <li><a href="single.html">GREATEST FILMS</a></li>
-                                <li><a href="single.html">THE BEST</a></li>
-                                <li><a href="single.html">OSCARS</a></li>
-                                <li><a href="single.html">GENRES</a></li>
-                                <li><a href="single.html">QUOTES</a></li>
-                                <li><a href="single.html">POSTERS</a></li>
-                                <li><a href="contact.html">CONTACT</a></li>
+                                <li class="active"><a href="main.html">主页</a></li>
+                                <li><a>最伟大的电影</a></li>
+                                <li><a>最好的电影</a></li>
+                                <li><a>奥斯卡奖</a></li>
+                                <li><a>类型</a></li>
+                                <li><a>引用</a></li>
+                                <li><a>海报</a></li>
+                                <li><a>联系</a></li>
                             </ul>
                         </div>
                     </nav>
@@ -99,56 +99,49 @@
             <div id="main-content" class="col-2-3">
                 <div class="wrap-content">
                     <div class="movie">
-                        <div class="row type">
-                            <div class="title">
-                                <center><h2>MOVIE</h2></center>
-                            </div>
-                            <ul>
-                                <li>
-                                    <select>
-                                        <option value="audi" selected>Type</option>
-                                        <option value="volvo">Text Text</option>
-                                        <option value="saab">Text Text</option>
-                                        <option value="volvo">Text Text</option>
-                                        <option value="saab">Text Text</option>
-                                        <option value="volvo">Text Text</option>
-                                        <option value="saab">Text Text</option>
-                                        <option value="volvo">Text Text</option>
-                                        <option value="saab">Text Text</option>
-                                        <option value="volvo">Text Text</option>
-                                        <option value="saab">Text Text</option>
-                                    </select>
-                                </li>
-                                <li><a class="button " href="#">Search</a></li>
-                            </ul>
-                        </div>
+                        <!--<div class="row type">-->
+                            <!--<div class="title">-->
+                                <!--<center><h2>电影</h2></center>-->
+                            <!--</div>-->
+                            <!--<ul>-->
+                                <!--<li>-->
+                                    <!--<select>-->
+                                        <!--<option value="audi" selected>类型</option>-->
+                                        <!--<option value="volvo">类型一</option>-->
+                                        <!--<option value="saab">类型二</option>-->
+                                        <!--<option value="saab">类型三</option>-->
+                                        <!--<option value="saab">类型四</option>-->
+                                    <!--</select>-->
+                                <!--</li>-->
+                                <!--<li><a class="button " href="#">搜索</a></li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
                         <div id="movie_list">
                         </div>
                     </div>
                 </div>
             </div>
-
             <div id="sidebar" class="col-1-3">
                 <div class="wrap-sidebar">
                     <!---- Start Widget ---->
                     <div class="widget wid-new-updates">
                         <div class="wid-header">
-                            <h5>Hot Updates !</h5>
+                            <h5>最新热点!</h5>
                         </div>
                         <div class="wid-content">
                             <ul>
-                                <li><a href="#">Mad Max: Fury Road</a><span><img src="images/hot.png"/></span></li>
-                                <li><a href="#">The Age of Adaline</a><span><img src="images/hot.png"/></span></li>
-                                <li><a href="#">Pound of Flesh</a><span><img src="images/hot.png"/></span></li>
-                                <li><a href="#">Bloodbath Island</a><span><img src="images/hot.png"/></span></li>
-                                <li><a href="#">Pound of Flesh</a><span><img src="images/hot.png"/></span></li>
+                                <li><a href="#">复仇者联盟三票房突破22亿</a><span><img src="images/hot.png"/></span></li>
+                                <li><a href="#">侏罗纪世界2 6月15日上映</a><span><img src="images/hot.png"/></span></li>
+                                <li><a href="#">超人总动员2 6月22日上映</a><span><img src="images/hot.png"/></span></li>
+                                <li><a href="#">蚁人与黄蜂女！ 大陆不同步</a><span><img src="images/hot.png"/></span></li>
+                                <li><a href="#">睿智国产电影保护月</a><span><img src="images/hot.png"/></span></li>
                             </ul>
                         </div>
                     </div>
                     <!---- Start Widget ---->
                     <div class="widget wid-post">
                         <div class="wid-header">
-                            <h5>Today's movies</h5>
+                            <h5>今日上映</h5>
                         </div>
                         <div class="wid-content">
                             <div class="today_list">
@@ -157,89 +150,112 @@
                     </div>
                 </div>
             </div>
+            <!--<div id="sidebar" class="col-1-3">-->
+                <!--<div class="wrap-sidebar">-->
+                    <!--&lt;!&ndash;&#45;&#45; Start Widget &#45;&#45;&ndash;&gt;-->
+                    <!--<div class="widget wid-new-updates">-->
+                        <!--<div class="wid-header">-->
+                            <!--<h5>Hot Updates !</h5>-->
+                        <!--</div>-->
+                        <!--<div class="wid-content">-->
+                            <!--<ul>-->
+                                <!--<li><a href="#">Mad Max: Fury Road</a><span><img src="images/hot.png"/></span></li>-->
+                                <!--<li><a href="#">The Age of Adaline</a><span><img src="images/hot.png"/></span></li>-->
+                                <!--<li><a href="#">Pound of Flesh</a><span><img src="images/hot.png"/></span></li>-->
+                                <!--<li><a href="#">Bloodbath Island</a><span><img src="images/hot.png"/></span></li>-->
+                                <!--<li><a href="#">Pound of Flesh</a><span><img src="images/hot.png"/></span></li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;&#45;&#45; Start Widget &#45;&#45;&ndash;&gt;-->
+                    <!--<div class="widget wid-post">-->
+                        <!--<div class="wid-header">-->
+                            <!--<h5>Today's movies</h5>-->
+                        <!--</div>-->
+                        <!--<div class="wid-content">-->
+                            <!--<div class="today_list">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </section>
 
     <!--  Footer  -->
-    <footer>
-        <div class="zerogrid">
-            <div class="wrap-footer">
-                <div class="row">
-                    <div class="col-1-4">
-                        <div class="wrap-col">
-                            <div class="widget wid-about">
-                                <div class="wid-header">
-                                    <h5>Welcome</h5>
-                                </div>
-                                <div class="logo"><a href="#"><img src="images/logo.png"/></a></div>
-                                <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque quod maxime placeat
-                                    facere possimus nihil impedit quo minus id quod maxime placeat facere possimus. </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-1-4">
-                        <div class="wrap-col">
-                            <div class="widget wid-meta">
-                                <div class="wid-header">
-                                    <h5>Links List</h5>
-                                </div>
-                                <div class="widget-content">
-                                    <div class="row">
-                                        <ul>
-                                            <li><a href="#">> Lorem ipsum dolor sit </a></li>
-                                            <li><a href="#">> Nullam venenatis lacus a </a></li>
-                                            <li><a href="#">> Morbi ut sapien nec nisl</a></li>
-                                            <li><a href="#">> Integer a enim ac ex.</a></li>
-                                            <li><a href="#">> Sed in nunc non eleifend </a></li>
-                                            <li><a href="#">> Integer a enim ac ex.</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-1-4">
-                        <div class="wrap-col">
-                            <div class="widget wid-report">
-                                <div class="wid-header">
-                                    <h5>Report Link</h5>
-                                </div>
-                                <div class="wid-content">
-                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                        voluptua.
-                                        At vero eos et accusam et justo duo dolores et ea rebum. Consetetur sadipscing
-                                        elitr,
-                                        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-1-4">
-                        <div class="wrap-col">
-                            <div class="widget wid-meta">
-                                <div class="wid-header">
-                                    <h5>Links List</h5>
-                                </div>
-                                <div class="widget-content">
-                                    <div class="row">
-                                        <ul>
-                                            <li><a href="#">> Lorem ipsum dolor sit </a></li>
-                                            <li><a href="#">> Nullam venenatis lacus a </a></li>
-                                            <li><a href="#">> Morbi ut sapien nec nisl</a></li>
-                                            <li><a href="#">> Integer a enim ac ex.</a></li>
-                                            <li><a href="#">> Sed in nunc non eleifend </a></li>
-                                            <li><a href="#">> Integer a enim ac ex.</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!--<footer>-->
+        <!--<div class="zerogrid">-->
+            <!--<div class="wrap-footer">-->
+                <!--<div class="row">-->
+                    <!--<div class="col-1-4">-->
+                        <!--<div class="wrap-col">-->
+                            <!--<div class="widget wid-about">-->
+                                <!--<div class="wid-header">-->
+                                    <!--<h5>欢迎光临</h5>-->
+                                <!--</div>-->
+                                <!--<div class="logo"><a href="#"><img src="images/logo.png"/></a></div>-->
+                                <!--<p>南部自由贸易区，最新一代。</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-1-4">-->
+                        <!--<div class="wrap-col">-->
+                            <!--<div class="widget wid-meta">-->
+                                <!--<div class="wid-header">-->
+                                    <!--<h5>链接列表</h5>-->
+                                <!--</div>-->
+                                <!--<div class="widget-content">-->
+                                    <!--<div class="row">-->
+                                        <!--<ul>-->
+                                            <!--<li><a href="#">> 坐在那里 </a></li>-->
+                                            <!--<li><a href="#">> 连接一 </a></li>-->
+                                            <!--<li><a href="#">> 连接二</a></li>-->
+                                            <!--<li><a href="#">> 连接三</a></li>-->
+                                            <!--<li><a href="#">> 连接四 </a></li>-->
+                                            <!--<li><a href="#">> 链接五</a></li>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-1-4">-->
+                        <!--<div class="wrap-col">-->
+                            <!--<div class="widget wid-report">-->
+                                <!--<div class="wid-header">-->
+                                    <!--<h5>报表链接</h5>-->
+                                <!--</div>-->
+                                <!--<div class="wid-content">-->
+                                    <!--<p>乱敲的文字一段。乱敲的一段文字.乱敲的文字一段。乱敲的一段文字乱敲的文字一段。乱敲的一段文字乱敲的文字一段。乱敲的一段文字乱敲的文字一段。乱敲的一段文字</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-1-4">-->
+                        <!--<div class="wrap-col">-->
+                            <!--<div class="widget wid-meta">-->
+                                <!--<div class="wid-header">-->
+                                    <!--<h5>链接列表</h5>-->
+                                <!--</div>-->
+                                <!--<div class="widget-content">-->
+                                    <!--<div class="row">-->
+                                        <!--<ul>-->
+                                            <!--<li><a href="#">> 链接一 </a></li>-->
+                                            <!--<li><a href="#">> 链接一 </a></li>-->
+                                            <!--<li><a href="#">> 链接一</a></li>-->
+                                            <!--<li><a href="#">> 链接一.</a></li>-->
+                                            <!--<li><a href="#">> S链接一 </a></li>-->
+                                            <!--<li><a href="#">> 链接一.</a></li>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</footer>-->
 
 
 </div>

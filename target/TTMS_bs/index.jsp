@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap Login Form Template</title>
+    <title>登录系统</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -169,8 +169,8 @@
             $('#reset').trigger("click");
             layer.open({
                 type: 1
-                , title: '添加数据'
-                , area: ['500px', '350px']
+                , title: '注册'
+                // , area: ['500px', '350px']
                 // ,shade: 0
                 // ,maxmin: true
                 , content: $("#userForm")
