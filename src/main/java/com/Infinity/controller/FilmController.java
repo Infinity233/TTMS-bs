@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -48,9 +49,7 @@ public class FilmController {
 
         finalJson.addProperty("code", 0);
         finalJson.addProperty("msg", "");
-
         finalJson.addProperty("count", filmList.size());
-
         finalJson.add("data", gson.toJsonTree(filmList));
 
         return finalJson.toString();
@@ -141,7 +140,6 @@ public class FilmController {
         director = StringUtil.handleChinese(director);
         filmname = StringUtil.handleChinese(filmname);
         employees = StringUtil.handleChinese(employees);
-
 
         Integer directorId = employeeService.getEmployeePrimaryKey(director);
         Employee dir = new Employee();

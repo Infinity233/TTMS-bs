@@ -25,6 +25,10 @@ public class UserService {
         return resultUser;
     }
 
+    public User selectById(Integer userId) {
+        return userMapper.selectByPrimaryKey(userId);
+    }
+
     public List<User> serachUser(String username) {
 
         List<User> list = userMapper.selectByUsernameMohu(username);

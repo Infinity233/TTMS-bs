@@ -1,5 +1,10 @@
 package com.Infinity.pojo;
 
+
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 public class Studio implements Serializable {
@@ -8,16 +13,21 @@ public class Studio implements Serializable {
     /**
      * 演出厅名称
      */
+    @NotNull
     private String name;
 
     /**
      * 演出厅长
      */
+    @NotNull
+    @Max(20)
     private Integer length;
 
     /**
      * 演出厅宽
      */
+    @NotNull
+    @Max(20)
     private Integer width;
 
     private static final long serialVersionUID = 1L;

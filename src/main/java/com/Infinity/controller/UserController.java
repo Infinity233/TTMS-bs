@@ -6,21 +6,33 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
+//      field注入
+//    @Autowired
+//    UserService userService;
+
+    // 构造器注入
+    private final UserService userService;
+
     @Autowired
-    UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+//      setter注入
+//    @Autowired
+//    public void setUserService(UserService userService) {
+//        this.userService = userService;
+//    }
 
     @RequestMapping("/login")
     public String userLogin(String username, String password, HttpSession session) {
@@ -83,6 +95,18 @@ public class UserController {
         return finalJson.toString();
     }
 
+    @RequestMapping(value="/{userId}", method=POST)
+    public String selectById(@PathVariable Integer userId) {
+        Gson gson = new Gson();
+        JsonObject finalJson = new JsonObject();
+
+        User user = userService.selectById(userId);
+
+        finalJson.add("user", gson.toJsonTree(user));
+
+        return finalJson.toString();
+    }
+
     @RequestMapping("/delete")
     public String delUsers(String delIds) {
 
@@ -101,7 +125,7 @@ public class UserController {
         return finalJson.toString();
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = POST)
     public String addUser(User user) {
 
         JsonObject finalJson = new JsonObject();

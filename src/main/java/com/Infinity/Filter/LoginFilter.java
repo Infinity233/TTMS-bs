@@ -20,9 +20,9 @@ public class LoginFilter implements Filter {
 
         String targetURL = currentURL.substring(ctxPath.length());
 
-        System.out.println(currentURL);
-        System.out.println(ctxPath);
-        System.out.println(targetURL);
+//        System.out.println(currentURL);
+//        System.out.println(ctxPath);
+//        System.out.println(targetURL);
         chain.doFilter(request, response);
     }
 

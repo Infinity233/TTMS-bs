@@ -8,10 +8,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -80,7 +82,9 @@ public class StudioController {
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String addStudio(Studio studio) {
+    public String addStudio(@Valid Studio studio, Errors errors) {
+
+        System.out.println(errors.hasErrors());
 
         JsonObject finalJson = new JsonObject();
 
@@ -92,8 +96,6 @@ public class StudioController {
             // add
             resultNum = studioService.insert(studio);
             seatService.insertByStudio(studio.getWidth(), studio.getLength(), studio.getId());
-
-
         } else {
             // update
             resultNum = studioService.update(studio);
@@ -108,7 +110,6 @@ public class StudioController {
         } else {
             finalJson.addProperty("success", 1);
         }
-        System.out.println(finalJson.toString());
         return finalJson.toString();
     }
 

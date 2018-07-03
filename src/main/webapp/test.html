@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:leaf="@{/user/selectAll.do}">asdasd</a>
+<script>
+    var idList = [
+        {roleName: 'role_name_1', note: 'note_1'},
+        {roleName: 'role_name_2', note: 'note_2'},
+        {roleName: 'role_name_3', note: 'note_3'}
+    ];
+
+    console.log(JSON.stringify(idList));
+</script>
+</body>
+</html>

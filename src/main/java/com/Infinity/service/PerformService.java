@@ -21,7 +21,6 @@ public class PerformService {
     public List<Perform> selectByFilmId(Integer id) {
         return performMapper.selectByFilmId(id);
     }
-
     public int insert(Perform perform) {
         
         return performMapper.insert(perform);
